@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'WeakTimer_Example' do
+  pod 'WeakTimer', :path => '../'
+
+  target 'WeakTimer_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
