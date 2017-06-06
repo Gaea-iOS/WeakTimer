@@ -1,0 +1,6 @@
+framework module Pods_WeakTimer_Tests {
+  umbrella header "Pods-WeakTimer_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

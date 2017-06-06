@@ -1,0 +1,16 @@
+PODS:
+  - WeakTimer (0.1.0)
+
+DEPENDENCIES:
+  - WeakTimer (from `../`)
+
+EXTERNAL SOURCES:
+  WeakTimer:
+    :path: ../
+
+SPEC CHECKSUMS:
+  WeakTimer: 0b335a229f61bdeffcc3ba7cbd49aa99db0c9620
+
+PODFILE CHECKSUM: fcde2b4969f99d0ce4358a1dd06d115f14e0a204
+
+COCOAPODS: 1.2.1
