@@ -18,14 +18,11 @@ public class DownCounter {
     private weak var target: AnyObject?
     private var timer: Timer?
     
-    var down: ((Int) -> Void)?
-    var done: (() -> Void)?
-    
     public init(step: Int = 1, target: AnyObject?) {
         self.target = target
     }
     
-    public func start(count: Int) {
+    public func start(count: Int, down: ((Int) -> Void)? = nil, done: (() -> Void)? = nil) {
         
         self.stop()
         
@@ -47,10 +44,10 @@ public class DownCounter {
             
             self.left -= 1
             
-            self.down?(self.left)
+            down?(self.left)
             
             if self.left <= 0 {
-                self.done?()
+                done?()
                 self.stop()
             }
         }
