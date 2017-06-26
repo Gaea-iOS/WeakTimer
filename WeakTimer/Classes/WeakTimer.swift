@@ -32,21 +32,21 @@ private class WeakTimerProxy {
 
 public extension Timer {
     
-    convenience init(timeInterval: TimeInterval, target: AnyObject, block: @escaping (Timer) -> Void, userInfo: Any?, repeats: Bool) {
+    static func with(timeInterval: TimeInterval, target: AnyObject, block: @escaping (Timer) -> Void, userInfo: Any?, repeats: Bool) -> Timer {
         let proxy = WeakTimerProxy(target: target, block: block)
-        self.init(timeInterval: timeInterval, target: proxy, selector: #selector(WeakTimerProxy.timerDidfire(timer:)), userInfo: userInfo, repeats: repeats)
+        return Timer(timeInterval: timeInterval, target: proxy, selector: #selector(WeakTimerProxy.timerDidfire(timer:)), userInfo: userInfo, repeats: repeats)
     }
 
     static func after(interval: TimeInterval, target: AnyObject, block: @escaping (Timer) -> Void) -> Timer {
         
-        let timer = Timer(timeInterval: interval, target: target, block: block, userInfo: nil, repeats: false)
+        let timer = Timer.with(timeInterval: interval, target: target, block: block, userInfo: nil, repeats: false)
         timer.start()
         return timer
     }
     
     static func every(interval: TimeInterval, target: AnyObject, block: @escaping (Timer) -> Void) -> Timer {
         
-        let timer = Timer(timeInterval: interval, target: target, block: block, userInfo: nil, repeats: true)
+        let timer = Timer.with(timeInterval: interval, target: target, block: block, userInfo: nil, repeats: true)
         timer.start()
         return timer
     }

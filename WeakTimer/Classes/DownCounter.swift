@@ -10,7 +10,7 @@ import Foundation
 
 public class DownCounter {
     
-    private var step: Int = 1
+    private let step: Int
     private var left: Int = 60
     
     var isCounting: Bool = false
@@ -18,11 +18,15 @@ public class DownCounter {
     private weak var target: AnyObject?
     private var timer: Timer?
     
+    public var down: ((Int) -> Void)? = nil
+    public var done: (() -> Void)? = nil
+    
     public init(step: Int = 1, target: AnyObject?) {
+        self.step = step
         self.target = target
     }
     
-    public func start(count: Int, down: ((Int) -> Void)? = nil, done: (() -> Void)? = nil) {
+    public func start(count: Int) {
         
         self.stop()
         
@@ -44,10 +48,10 @@ public class DownCounter {
             
             self.left -= 1
             
-            down?(self.left)
+            self.down?(self.left)
             
             if self.left <= 0 {
-                done?()
+                self.done?()
                 self.stop()
             }
         }
