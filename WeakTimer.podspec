@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'WeakTimer'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'extension for Timer to use as a weak timer'
 
 # This description is used to generate tags and improve search results.
